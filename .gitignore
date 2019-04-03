@@ -1,16 +1,6 @@
-## Core latex/pdflatex auxiliary files:
-*.aux
-*.lof
-*.log
-*.lot
-*.fls
-*.out
-*.toc
-*.fmt
-*.fot
-*.cb
-*.cb2
+## Core latex/pdflatex auxiliary files: *.aux *.lof *.log *.lot *.fls *.out *.toc *.fmt *.fot *.cb *.cb2
 
+others/
 ## Intermediate documents:
 *.dvi
 *-converted-to.*
