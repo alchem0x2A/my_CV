@@ -406,8 +406,8 @@
 \newcommand{\acvHeaderAfterQuoteSkip}{5mm}
 
 % Others
-\newcommand{\acvSectionTopSkip}{0mm}
-\newcommand{\acvSectionContentTopSkip}{0mm}
+\newcommand{\acvSectionTopSkip}{3mm}
+\newcommand{\acvSectionContentTopSkip}{2.5mm}
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
 
 
@@ -582,7 +582,7 @@
 % Usage: \cvsubsection{<subsection-title>}
 \newcommand{\cvsubsection}[1]{%
   \vspace{\acvSectionContentTopSkip}
-  % \vspace{-3mm}
+  \vspace{-3mm}
   \subsectionstyle{#1}
   % \phantomsection
 }
@@ -590,7 +590,7 @@
 % Define a paragraph for CV
 \newenvironment{cvparagraph}{%
   \vspace{\acvSectionContentTopSkip}
-  % \vspace{-3mm}
+  \vspace{-3mm}
   \paragraphstyle
 }{%
   \par
@@ -607,7 +607,7 @@
 % Define an entry of cv information
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
 \newcommand*{\cventry}[5]{%
-  % \vspace{-5.0mm}
+  \vspace{-2.0mm}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
@@ -646,7 +646,7 @@
 % Define an environment for cvhonor
 \newenvironment{cvhonors}{%
   \vspace{\acvSectionContentTopSkip}
-  % \vspace{-2mm}
+  \vspace{-2mm}
   \begin{center}
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
@@ -665,7 +665,7 @@
 % Define an environment for cvskill
 \newenvironment{cvskills}{%
   \vspace{\acvSectionContentTopSkip}
-  % \vspace{-2.0mm}
+  \vspace{-2.0mm}
   \begin{center}
     \setlength\tabcolsep{1ex}
     \setlength{\extrarowheight}{0pt}
@@ -682,7 +682,7 @@
 
 % Define an environment for cvitems(for cventry)
 \newenvironment{cvitems}{%
-  % \vspace{-4.0mm}
+  \vspace{-4.0mm}
   \begin{justify}
   \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
     \setlength{\parskip}{0pt}
@@ -690,11 +690,11 @@
 }{%
   \end{itemize}
   \end{justify}
-  % \vspace{-4.0mm}
+  \vspace{-4.0mm}
 }
 
 \newenvironment{cvenum}{%
-  % \vspace{-4.0mm}
+  \vspace{-4.0mm}
   \begin{justify}
     \begin{enumerate}[leftmargin=4ex, rightmargin=2ex,
       nosep, noitemsep]
@@ -777,3 +777,142 @@
       \letterenclosurestyle{\@letterenclname: \@letterenclosure} \\
     }
 }
+
+%-------------------------------------------------------------------------------
+%                Bibliography
+%-------------------------------------------------------------------------------
+%\RequirePackage[style=verbose, maxnames=99, sorting=ydnt]{biblatex}
+\RequirePackage[ % BibLaTeX
+	sorting=none, % Sorts entries by year (descending order), name, title
+	style=chem-acs,
+	doi=true,
+	isbn=false,
+	url=true,
+	eprint=false,
+	backref = false, % include back references in bibliography
+	maxcitenames=3, % affects only the citations in the document body
+	maxbibnames=99, % affects only the bibliography, pass 99 to print all
+	hyperref=true,
+	block=none,
+	backend=biber % {Options: bibtex, biber}
+	]{biblatex}
+
+        
+        
+
+% Avoid splitting entries across page break (only for 3 or fewer lines)
+% Tip: http://tex.stackexchange.com/a/51261
+\AtBeginEnvironment{thebibliography}{%
+   \clubpenalty10000
+   \@clubpenalty \clubpenalty
+   \widowpenalty10000
+   \interlinepenalty5000}
+
+% Customized format, based on Fancy CV template created by Adrien Friggeri
+\DeclareFieldFormat[article]{title}{#1\par}
+\DeclareFieldFormat[inproceedings]{title}{#1\par}
+\DeclareFieldFormat[misc]{title}{#1\par}
+\DeclareFieldFormat[report]{title}{#1\par}
+\DeclareFieldFormat[incollection]{title}{#1\par}
+\DeclareFieldFormat[unpublished]{title}{#1\par}
+\DefineBibliographyStrings{english}{%
+  url = {\underline{Link}},
+}
+\DeclareFieldFormat{url}{%
+  \ifhyperref
+    {\href{#1}{\bibstring{url}}}
+    {\url{#1}}}
+
+
+  \DeclareFieldFormat{labelnumberwidth}{
+    \fontsize{9pt}{1em}\bodyfontlight\color{graytext}
+    #1\adddot}
+
+% \DeclareFieldInputHandler{journaltitle}{%
+  % \def\NewValue{\JournalTitle{#1}}}
+
+\DeclareBibliographyDriver{article}{%
+  \fontsize{9pt}{1em}\bodyfont%
+  \printfield{title}%
+  \newblock%
+  \fontsize{9pt}{1em}\bodyfontlight
+  \printnames{author}%
+  \par%
+  \newblock%
+  {%
+     \setunit{\space}
+    \fontsize{9pt}{1em}\bodyfontlight\color{graytext}%
+    
+    \usebibmacro{journal+issuetitle}%
+    % \printfield{journaltitle}
+    \setunit{\space}%
+    \printfield{pages}%
+    \newunit%
+    \printlist{publisher}%
+    % \printfield{year}%
+    \newunit%
+    \setunit{\space}%
+    \fontsize{9pt}{1em}\bodyfontlight\color{my-aqua}
+    \printfield{url}
+  }
+  \par\vspace{0.3\baselineskip}
+}
+\DeclareBibliographyDriver{unpublished}{%
+  \fontsize{9pt}{1em}\bodyfont%
+  \printfield{title}%
+  \newblock%
+  \fontsize{9pt}{1em}\bodyfontlight
+  \printnames{author}%
+  \par%
+  \fontsize{9pt}{1em}\bodyfontlight
+  \printfield{journaltitle}
+  \par\vspace{0.3\baselineskip}
+}
+
+
+
+% New syntax for flexible backend (BibLaTeX > v3.3)
+% \DeclareNameFormat{author}{%
+%   \fontsize{9pt}{1em}\bodyfontlight%
+%   \renewcommand*{\multinamedelim}{\addcomma\addspace}%
+%   \nameparts{#1}%
+%   \ifthenelse{\value{listcount}=1}
+%     {\ifblank{\namepartgiven}{}{\namepartgiven\space}%
+%     \namepartfamily}%
+%     {\ifblank{\namepartgiven}{}{\namepartgiven\space}%
+%     \namepartfamily}%
+%   \ifthenelse{\value{listcount}<\value{liststop}}
+%   {\addcomma\space}
+%   {}
+% }
+
+\renewcommand*{\mkbibnamegiven}[1]{%
+  \ifitemannotation{coauth}
+  {
+    #1\textsuperscript{\textdagger}
+  }
+  {
+    \ifitemannotation{coauth-highlight}
+    {    \textbf{#1\textsuperscript{\textdagger}}}
+    {\ifitemannotation{highlight}
+      {\textbf{#1}}
+      {#1}
+    }
+  }}
+  % \ifitemannotation{highlight}
+    % {\textbf{#1}}
+    % {#1}}
+
+\renewcommand*{\mkbibnamefamily}[1]{%
+  \ifitemannotation{coauth}
+  {
+    #1
+  }
+  {
+    \ifitemannotation{coauth-highlight}
+    {    \textbf{#1}}
+    {\ifitemannotation{highlight}
+      {\textbf{#1}}
+      {#1}
+    }
+  }}
