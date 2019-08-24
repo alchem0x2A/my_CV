@@ -68,7 +68,7 @@
 \RequirePackage{unicode-math}
 % Needed to use icons from font-awesome
 % (https://github.com/posquit0/latex-fontawesome)
-\RequirePackage{fontawesome}    %No need to use the customized as of 2018
+\RequirePackage{fontawesome5}    % Use fontawesome5 instead of version 4
 \RequirePackage[default,opentype]{sourcesanspro}
 \RequirePackage[default,osfigures,scale=0.95]{opensans}
 % Needed for the photo ID
@@ -163,7 +163,7 @@
 %                Configuration for fonts
 %-------------------------------------------------------------------------------
 % Set the FontAwesome font to be up-to-date.
-\newfontfamily\FA[Path=\@fontdir]{FontAwesome}
+% \newfontfamily\FA[Path=\@fontdir]{FontAwesome5}
 % Set font for header (default is Roboto)
 % \newfontfamily\headerfont[
   % Path=\@fontdir,
@@ -470,7 +470,7 @@
       \ifthenelse{\isundefined{\@mobile}}%
         {}%
         {%
-          \faMobile\acvHeaderIconSep\@mobile%
+          \faPhoneSquare\acvHeaderIconSep\@mobile%
           \setbool{isstart}{false}%
         }%
       \ifthenelse{\isundefined{\@email}}%
@@ -479,17 +479,16 @@
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           \href{mailto:\@email}{\faEnvelope\acvHeaderIconSep\@email}%
         }%
-      \ifthenelse{\isundefined{\@homepage}}%
+      \ifthenelse{\isundefined{\@homepageurl}}%
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{http://\@homepageurl}{\faHome\acvHeaderIconSep\@homepagedisplayname}%
+          \href{\@homepageurl}{\faHome\acvHeaderIconSep\@homepagedisplayname}%
         }%
-      \ifthenelse{\isundefined{\@github}}%
+      \ifthenelse{\isundefined{\@githubid}}%
         {}%
         {%
-          \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://github.com/\@githubid}{\faGithubSquare\acvHeaderIconSep\@githubdisplayname}%
+          \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}       \href{https://github.com/\@githubid}{\faGithub\acvHeaderIconSep\@githubdisplayname}%
         }%
       \ifthenelse{\isundefined{\@gitlab}}%
         {}%
@@ -543,7 +542,7 @@
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://scholar.google.com/citations?user=\@googlescholarid}{\faGraduationCap\acvHeaderIconSep\@googlescholarname}%
+          \href{https://scholar.google.com/citations?user=\@googlescholarid}{\faHome\acvHeaderIconSep\@googlescholarname}%
         }%
       \ifthenelse{\isundefined{\@extrainfo}}%
         {}%
