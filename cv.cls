@@ -1,16 +1,3 @@
-% Adapted from:
-% https://github.com/posquit0/Awesome-CV
-%
-% Original Author:
-% Claud D. Park <posquit0.bj@gmail.com>
-% http://www.posquit0.com
-%
-%
-% Class license:
-% LPPL v1.3c (http://www.latex-project.org/lppl)
-%
-
-
 %-------------------------------------------------------------------------------
 %                Identification
 %-------------------------------------------------------------------------------
@@ -39,7 +26,7 @@
 %-------------------------------------------------------------------------------
 %                3rd party packages
 %-------------------------------------------------------------------------------
-\RequirePackage{booktabs, cellspace}
+\RequirePackage{booktabs, cellspace, tabularx, makecell}
 % Needed to make fixed length table
 \RequirePackage{array}
 % Needed to handle list environment
@@ -67,10 +54,14 @@
 % Needed to manage math fonts
 \RequirePackage{unicode-math}
 % Needed to use icons from font-awesome
-% (https://github.com/posquit0/latex-fontawesome)
-\RequirePackage{fontawesome5}    % Use fontawesome5 instead of version 4
+
+% --------------------------------------------------------------------------------
+% Use Font Packages
+% --------------------------------------------------------------------------------
+\RequirePackage{fontawesome5} % Use fontawesome5 instead of version 4
 \RequirePackage[default,opentype]{sourcesanspro}
 \RequirePackage[default,osfigures,scale=0.95]{opensans}
+% \RequirePackage[RMstyle=Semibold, SSstyle=Semibold,]{plex-otf}
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
 % Needed to deal a paragraphs
@@ -90,7 +81,7 @@
 %-------------------------------------------------------------------------------
 % Configure a directory location for fonts(default: 'fonts/')
 \newcommand*{\fontdir}[1][fonts/]{\def\@fontdir{#1}}
-\fontdir
+\fontdir                        %Default to be fonts/ as defined
 
 
 %-------------------------------------------------------------------------------
@@ -132,14 +123,6 @@
 \colorlet{graytext}{gray}
 \colorlet{lighttext}{lightgray}
 % Awesome colors
-% \definecolor{awesome-emerald}{HTML}{00A388}
-% \definecolor{awesome-skyblue}{HTML}{0395DE}
-% \definecolor{awesome-red}{HTML}{DC3522}
-% \definecolor{awesome-pink}{HTML}{EF4089}
-% \definecolor{awesome-orange}{HTML}{FF6138}
-% \definecolor{awesome-nephritis}{HTML}{27AE60}
-% \definecolor{awesome-concrete}{HTML}{95A5A6}
-% \definecolor{awesome-darknight}{HTML}{131A28}
 \definecolor{my-burgonde}{HTML}{AC3B61}
 \definecolor{my-aqua}{HTML}{123C69}
 \definecolor{my-concrete}{HTML}{BAB2B5}
@@ -165,84 +148,99 @@
 % Set the FontAwesome font to be up-to-date.
 % \newfontfamily\FA[Path=\@fontdir]{FontAwesome5}
 % Set font for header (default is Roboto)
-% \newfontfamily\headerfont[
-  % Path=\@fontdir,
-  % UprightFont=*-Regular,
-  % ItalicFont=*-Italic,
-  % BoldFont=*-Medium,
-  % BoldItalicFont=*-MediumItalic,
-% ]{Roboto}
-
-% \newfontfamily\headerfontlight[
-  % Path=\@fontdir,
-  % UprightFont=*-Thin,
-  % ItalicFont=*-ThinItalic,
-  % BoldFont=*-Medium,
-  % BoldItalicFont=*-MediumItalic,
-% ]{Roboto}
-
 \newfontfamily\headerfont[
-  Path=\@fontdir,
-  UprightFont=*-light,
-  ItalicFont=*-light-italic,
-  BoldFont=*-light-bold,
-  BoldItalicFont=*-light-bold-italic,
-]{eth}
+  % Path=\@fontdir,
+  UprightFont=*-Regular,
+  ItalicFont=*-Italic,
+  BoldFont=*-Medium,
+  BoldItalicFont=*-MediumItalic,
+]{Roboto}
+
+\newfontfamily\headerfontlight[
+  % Path=\@fontdir,
+  UprightFont=*-Thin,
+  ItalicFont=*-ThinItalic,
+  BoldFont=*-Medium,
+  BoldItalicFont=*-MediumItalic,
+]{Roboto}
+
+\newfontfamily\bodyfont[
+  % Path=\@fontdir,
+  UprightFont=*-Light,
+  ItalicFont=*-LightItalic,
+  BoldFont=*-SemiBold,
+  BoldItalicFont=*-SemiBoldItalic,
+]{IBMPlexSans}
 
 
-\newcommand*{\footerfont}{\sourcesanspro}
-\newcommand*{\bodyfont}{\sourcesanspro}
-\newcommand*{\bodyfontlight}{\sourcesansprolight}
+% \newcommand*{\footerfont}{\sourcesanspro}
+% \newcommand*{\bodyfont}{\sourcesanspro}
+% \newcommand*{\bodyfontlight}{\sourcesansprolight}
+
+% --------------------------------------------------------------------------------
+% Change to Plex Fonts
+% --------------------------------------------------------------------------------
+\newcommand*{\footerfont}{\headerfontlight}
+% \newcommand*{\bodyfont}{\}
+\newcommand*{\bodyfontlight}{\headerfontlight}
+\newcommand*{\bodyfontsans}{\bodyfont}
+
 
 %-------------------------------------------------------------------------------
 %                Configuration for styles
 %-------------------------------------------------------------------------------
 % Configure styles for each CV elements
 % For fundamental structures
-\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{28pt}{1em}\bfseries\headerfont\color{text} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\fontsize{28pt}{1em}\bfseries\headerfont\color{text} #1}}
-\newcommand*{\headerpositionstyle}[1]{{\fontsize{10pt}{1em}\scshape\bodyfont\color{main} #1}}
-\newcommand*{\headeraddressstyle}[1]{{\fontsize{8pt}{1em}\headerfont\itshape\color{lighttext} #1}}
-\newcommand*{\headersocialstyle}[1]{{\fontsize{8pt}{1em}\headerfont\color{my-aqua} #1}}
-\newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{darktext} #1}}
-\newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\footerfont\scshape\color{lighttext} #1}}
-\newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
-\newcommand*{\subsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
-\newcommand*{\paragraphstyle}{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}}
+\newcommand*{\headerfirstnamestyle}[1]{{\Huge \bfseries\headerfont\color{text} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\Huge \bfseries\headerfont\color{text} #1}}
+% \newcommand*{\headerpositionstyle}[1]{{\fontsize{10pt}{1em}\scshape\bodyfontsans\color{main} #1}}
+\newcommand*{\headerpositionstyle}[1]{{\large \scshape\headerfont\color{main} #1}}
+\newcommand*{\headeraddressstyle}[1]{{\small \itshape\headerfont\color{lighttext} #1}}
+\newcommand*{\headersocialstyle}[1]{{\footnotesize \headerfont\color{my-aqua} #1}}
+\newcommand*{\headerquotestyle}[1]{{\small \bodyfont\itshape\color{darktext} #1}}
+\newcommand*{\footerstyle}[1]{{\footnotesize \footerfont\scshape\color{lighttext} #1}}
+\newcommand*{\sectionstyle}[1]{{\Large \bodyfont\bfseries\color{text}\@sectioncolor #1}}
+\newcommand*{\subsectionstyle}[1]{{\large \bodyfont\scshape\textcolor{text}{#1}}}
+\newcommand*{\paragraphstyle}{\normalsize \bodyfont\upshape\color{text}}
 
 % For elements of entry
-\newcommand*{\entrytitlestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\entrypositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
-\newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{graytext} #1}}
-\newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{main} #1}}
-\newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
+\newcommand*{\entrytitlestyle}[1]{{\normalsize \bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\entrypositionstyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
+\newcommand*{\entrydatestyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
+\newcommand*{\entrylocationstyle}[1]{{\normalsize \bodyfont\color{main} #1}}
+\newcommand*{\descriptionstyle}[1]{{\normalsize \bodyfont\upshape\color{text} #1}}
 
 % For elements of subentry
-\newcommand*{\subentrytitlestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\mdseries\color{graytext} #1}}
-\newcommand*{\subentrypositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
-\newcommand*{\subentrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{graytext} #1}}
-\newcommand*{\subentrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{main} #1}}
-\newcommand*{\subdescriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
+\newcommand*{\subentrytitlestyle}[1]{{\small \bodyfont\mdseries\color{graytext} #1}}
+\newcommand*{\subentrypositionstyle}[1]{{\small \bodyfont\scshape\color{graytext} #1}}
+\newcommand*{\subentrydatestyle}[1]{{\small \bodyfont\color{graytext} #1}}
+\newcommand*{\subentrylocationstyle}[1]{{\small \bodyfont\slshape\color{main} #1}}
+\newcommand*{\subdescriptionstyle}[1]{{\small \bodyfont\upshape\color{text} #1}}
 
 % For elements of honor
-\newcommand*{\honortitlestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{darktext} #1}}
-\newcommand*{\honorpositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\honordatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{graytext} #1}}
-\newcommand*{\honorlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{main} #1}}
+\newcommand*{\honortitlestyle}[1]{{\normalsize \bodyfont\color{darktext} #1}}
+\newcommand*{\honorpositionstyle}[1]{{\normalsize \bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\honordatestyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
+\newcommand*{\honorlocationstyle}[1]{{\normalsize \bodyfont\slshape\color{main} #1}}
 
 % For elements of skill
-\newcommand*{\skilltypestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\skillsetstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{text} #1}}
+\newcommand*{\skilltypestyle}[1]{{\normalsize \bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\skillsetstyle}[1]{{\normalsize \bodyfont\color{text} #1}}
+
+% References
+\newcommand*{\refnamestyle}[1]{{\large \bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\refaddressstyle}[1]{{\normalsize \bodyfont\color{lighttext} #1}}
+\newcommand*{\refcontactstyle}[1]{{\normalsize \bodyfont\color{my-aqua} #1}}
 
 % For elements of the cover letter
-\newcommand*{\lettersectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
-\newcommand*{\recipientaddressstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
-\newcommand*{\recipienttitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\lettertitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\bfseries\color{darktext} \underline{#1}}}
-\newcommand*{\letterdatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{graytext} #1}}
-\newcommand*{\lettertextstyle}{\fontsize{10pt}{1.4em}\bodyfontlight\upshape\color{graytext}}
-\newcommand*{\letternamestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\letterenclosurestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\slshape\color{lighttext} #1}}
+\newcommand*{\lettersectionstyle}[1]{{\large \bodyfont\bfseries\color{text}\@sectioncolor #1}}
+\newcommand*{\recipientaddressstyle}[1]{{\normalsize \bodyfont\scshape\color{graytext} #1}}
+\newcommand*{\recipienttitlestyle}[1]{{\large \bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\lettertitlestyle}[1]{{\large \bodyfont\bfseries\color{darktext} \underline{#1}}}
+\newcommand*{\letterdatestyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
+\newcommand*{\lettertextstyle}{\normalszie \bodyfont\upshape\color{graytext}}
+\newcommand*{\letternamestyle}[1]{{\normalsize \bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\letterenclosurestyle}[1]{{\normalsize \bodyfont\slshape\color{lighttext} #1}}
 
 
 %-------------------------------------------------------------------------------
@@ -610,7 +608,7 @@
   \vspace{-2.0mm}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+  \begin{tabular*}{\textwidth}[t]{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
     \ifempty{#2#3}
       {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
       {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
@@ -630,7 +628,7 @@
 \newcommand*{\cvsubentry}[4]{%
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+  \begin{tabular*}{\textwidth}[t]{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
     \setlength\leftskip{0.2cm}
     \subentrytitlestyle{#2} & \ifthenelse{\equal{#1}{}}
       {\subentrydatestyle{#3}}{}
@@ -668,7 +666,7 @@
   \vspace{-2.0mm}
   \begin{center}
     \setlength\tabcolsep{1ex}
-    \setlength{\extrarowheight}{0pt}
+    \setlength{\extrarowheight}{5pt}
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9}}}
 }{%
     \end{tabular*}
@@ -677,7 +675,8 @@
 % Define a line of cv information(skill)
 % Usage: \cvskill{<type>}{<skillset>}
 \newcommand*{\cvskill}[2]{%
-	\skilltypestyle{#1} & \skillsetstyle{#2} \\
+  % \makecell[tl]{\skilltypestyle{#1}} & \makecell[tl]{\skillsetstyle{#2}} \\
+    \makecell[tl]{\skilltypestyle{#1}} & \skillsetstyle{\makecell[tl]{#2}} \\
 }
 
 % Define an environment for cvitems(for cventry)
@@ -690,7 +689,7 @@
 }{%
   \end{itemize}
   \end{justify}
-  \vspace{-4.0mm}
+  % \vspace{-4.0mm}
 }
 
 \newenvironment{cvenum}{%
@@ -808,6 +807,10 @@
    \widowpenalty10000
    \interlinepenalty5000}
 
+
+ % --------------------------------------------------------------------------------
+ % Customized bibliography formats
+%-------------------------------------------------------------------------------- 
 % Customized format, based on Fancy CV template created by Adrien Friggeri
 \DeclareFieldFormat[article]{title}{#1\par}
 \DeclareFieldFormat[inproceedings]{title}{#1\par}
@@ -816,7 +819,7 @@
 \DeclareFieldFormat[incollection]{title}{#1\par}
 \DeclareFieldFormat[unpublished]{title}{#1\par}
 \DefineBibliographyStrings{english}{%
-  url = {\underline{Link}},
+  url = {\underline{doi}},
 }
 \DeclareFieldFormat{url}{%
   \ifhyperref
@@ -825,66 +828,50 @@
 
 
   \DeclareFieldFormat{labelnumberwidth}{
-    \fontsize{9pt}{1em}\bodyfontlight\color{graytext}
+    \fontsize{9pt}{1em}\bodyfont\color{graytext}
     #1\adddot}
 
 % \DeclareFieldInputHandler{journaltitle}{%
   % \def\NewValue{\JournalTitle{#1}}}
 
 \DeclareBibliographyDriver{article}{%
-  \fontsize{9pt}{1em}\bodyfont%
-  \printfield{title}%
+  {\small \bfseries \bodyfont%
+  \printfield{title}}%
   \newblock%
-  \fontsize{9pt}{1em}\bodyfontlight
+  {\small \bodyfont
   \printnames{author}%
-  \par%
+  \par}%
   \newblock%
   {%
-     \setunit{\space}
-    \fontsize{9pt}{1em}\bodyfontlight\color{graytext}%
+    \setunit{\space}
+    \small \bodyfont\color{graytext}%
     
     \usebibmacro{journal+issuetitle}%
     % \printfield{journaltitle}
     \setunit{\space}%
     \printfield{pages}%
     \newunit%
-    \printlist{publisher}%
+    % \printlist{publisher}%
     % \printfield{year}%
-    \newunit%
+    % \newunit%
     \setunit{\space}%
-    \fontsize{9pt}{1em}\bodyfontlight\color{my-aqua}
+    \small \bodyfont\color{my-aqua}
     \printfield{url}
   }
   \par\vspace{0.3\baselineskip}
 }
 \DeclareBibliographyDriver{unpublished}{%
-  \fontsize{9pt}{1em}\bodyfont%
-  \printfield{title}%
+  {\small \bfseries \bodyfont%
+  \printfield{title}}%
   \newblock%
-  \fontsize{9pt}{1em}\bodyfontlight
+  {\small \bodyfont
   \printnames{author}%
-  \par%
-  \fontsize{9pt}{1em}\bodyfontlight
+  \par}%
+  {\small \bodyfont
   \printfield{journaltitle}
-  \par\vspace{0.3\baselineskip}
+  \par\vspace{0.3\baselineskip}}
 }
 
-
-
-% New syntax for flexible backend (BibLaTeX > v3.3)
-% \DeclareNameFormat{author}{%
-%   \fontsize{9pt}{1em}\bodyfontlight%
-%   \renewcommand*{\multinamedelim}{\addcomma\addspace}%
-%   \nameparts{#1}%
-%   \ifthenelse{\value{listcount}=1}
-%     {\ifblank{\namepartgiven}{}{\namepartgiven\space}%
-%     \namepartfamily}%
-%     {\ifblank{\namepartgiven}{}{\namepartgiven\space}%
-%     \namepartfamily}%
-%   \ifthenelse{\value{listcount}<\value{liststop}}
-%   {\addcomma\space}
-%   {}
-% }
 
 \renewcommand*{\mkbibnamegiven}[1]{%
   \ifitemannotation{coauth}
@@ -916,3 +903,30 @@
       {#1}
     }
   }}
+
+
+% --------------------------------------------------------------------------------
+% Typesetting for references
+% --------------------------------------------------------------------------------
+\newenvironment{cvrefs}{
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2mm}
+}
+{
+  \par
+}
+
+
+\newcommand*{\cvref}[5]{
+  \begin{minipage}[t]{1.0\textwidth}
+  {\refnamestyle{#1} \par}          %Reference name
+    % \vspace{1em}
+  {\refaddressstyle{#2} \\ %address 1
+  \refaddressstyle{#3} \\ %address 2
+  \refcontactstyle{\faEnvelope\acvHeaderIconSep\href{mailto:#4}{#4}}
+  \ifempty{#5}{}
+  {\\ \refcontactstyle{\faHome\acvHeaderIconSep\href{#5}{#5}}}
+  \par}
+  \end{minipage}
+  % \vskip{2.5em}
+}
