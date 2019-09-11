@@ -860,6 +860,24 @@
   }
   \par\vspace{0.3\baselineskip}
 }
+
+\DeclareBibliographyDriver{inproceedings}{%
+  {\small \bfseries \bodyfont%
+  \printfield{title}}%
+  \newblock%
+  {\small \bodyfont
+  \printnames{author}%
+  \par}%
+  \newblock%
+  {%
+    \setunit{\space}
+    \small \bodyfont\color{graytext}%
+    \setunit{\space}%
+    \printfield{booktitle}%
+  }
+  \par\vspace{0.3\baselineskip}
+}
+
 \DeclareBibliographyDriver{unpublished}{%
   {\small \bfseries \bodyfont%
   \printfield{title}}%
