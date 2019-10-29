@@ -148,29 +148,47 @@
 % Set the FontAwesome font to be up-to-date.
 % \newfontfamily\FA[Path=\@fontdir]{FontAwesome5}
 % Set font for header (default is Roboto)
+% \newfontfamily\headerfont[
+%   % Path=\@fontdir,
+%   UprightFont=*-Regular,
+%   ItalicFont=*-Italic,
+%   BoldFont=*-Medium,
+%   BoldItalicFont=*-MediumItalic,
+% ]{Roboto}
+
+% \newfontfamily\headerfontlight[
+%   % Path=\@fontdir,
+%   UprightFont=*-Thin,
+%   ItalicFont=*-ThinItalic,
+%   BoldFont=*-Medium,
+%   BoldItalicFont=*-MediumItalic,
+%   ]{Roboto}
+
 \newfontfamily\headerfont[
-  % Path=\@fontdir,
-  UprightFont=*-Regular,
-  ItalicFont=*-Italic,
+% Path=\@fontdir,
+  Extension=.otf,
+  UprightFont=*-Book,
+  ItalicFont=*-BookItalic,
   BoldFont=*-Medium,
   BoldItalicFont=*-MediumItalic,
-]{Roboto}
+]{FiraSans}
 
 \newfontfamily\headerfontlight[
   % Path=\@fontdir,
-  UprightFont=*-Thin,
-  ItalicFont=*-ThinItalic,
+  UprightFont=*-ExtraLight,
+  ItalicFont=*-ExtraLightItalic,
   BoldFont=*-Medium,
   BoldItalicFont=*-MediumItalic,
-]{Roboto}
+]{FiraSans}
 
 \newfontfamily\bodyfont[
-  % Path=\@fontdir,
+% Path=\@fontdir,
+  Extension=.otf,
   UprightFont=*-Light,
   ItalicFont=*-LightItalic,
-  BoldFont=*-SemiBold,
-  BoldItalicFont=*-SemiBoldItalic,
-]{IBMPlexSans}
+  BoldFont=*-Medium,
+  BoldItalicFont=*-MediumItalic,
+]{FiraSans}
 
 
 % \newcommand*{\footerfont}{\sourcesanspro}
@@ -504,7 +522,7 @@
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\acvHeaderIconSep\@linkedin}%
+          \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedin\acvHeaderIconSep{}LinkedIn}%
         }%
       \ifthenelse{\isundefined{\@twitter}}%
         {}%
@@ -835,7 +853,7 @@
   % \def\NewValue{\JournalTitle{#1}}}
 
 \DeclareBibliographyDriver{article}{%
-  {\small \bfseries \bodyfont%
+  {\small \bodyfont%
   \printfield{title}}%
   \newblock%
   {\small \bodyfont
@@ -862,7 +880,7 @@
 }
 
 \DeclareBibliographyDriver{inproceedings}{%
-  {\small \bfseries \bodyfont%
+  {\small \bodyfont%
   \printfield{title}}%
   \newblock%
   {\small \bodyfont
@@ -879,7 +897,7 @@
 }
 
 \DeclareBibliographyDriver{unpublished}{%
-  {\small \bfseries \bodyfont%
+  {\small \bodyfont%
   \printfield{title}}%
   \newblock%
   {\small \bodyfont
