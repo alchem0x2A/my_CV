@@ -109,7 +109,7 @@
 \definecolor{white}{HTML}{FFFFFF}
 \definecolor{black}{HTML}{000000}
 \definecolor{darkgray}{HTML}{333333}
-\definecolor{gray}{HTML}{5D5D5D}
+\definecolor{gray}{HTML}{444444}
 \definecolor{lightgray}{HTML}{777777}
 % Basic colors
 \definecolor{green}{HTML}{C2E15F}
@@ -124,21 +124,28 @@
 \colorlet{lighttext}{lightgray}
 % Awesome colors
 \definecolor{my-burgonde}{HTML}{AC3B61}
-\definecolor{my-aqua}{HTML}{123C69}
+\definecolor{my-aqua}{HTML}{18678f}
 \definecolor{my-concrete}{HTML}{BAB2B5}
 \definecolor{my-pale}{HTML}{EEE2DC}
 \definecolor{my-pink}{HTML}{EDC7B7}
+\definecolor{my-purple}{HTML}{743481}
 % Main theme color
-\colorlet{main}{my-burgonde}
+\colorlet{main}{my-aqua}
+% \colorlet{main}{gray}
 
 % Boolean value to switch section color highlighting
 \newbool{acvSectionColorHighlight}
 \setbool{acvSectionColorHighlight}{true}
 
 % Awesome section color
+% \def\@sectioncolor#1#2#3{%
+  % \ifbool{acvSectionColorHighlight}
+  % {{\color{main}#1#2#3}}{#1#2#3}%
+% }
+
 \def\@sectioncolor#1#2#3{%
   \ifbool{acvSectionColorHighlight}
-  {{\color{main}#1#2#3}}{#1#2#3}%
+  {{\color{main}#1}#2#3}{#1#2#3}%
 }
 
 
@@ -212,53 +219,54 @@
 \newcommand*{\headerfirstnamestyle}[1]{{\Huge \bfseries\headerfont\color{text} #1}}
 \newcommand*{\headerlastnamestyle}[1]{{\Huge \bfseries\headerfont\color{text} #1}}
 % \newcommand*{\headerpositionstyle}[1]{{\fontsize{10pt}{1em}\scshape\bodyfontsans\color{main} #1}}
-\newcommand*{\headerpositionstyle}[1]{{\large \scshape\headerfont\color{main} #1}}
+\newcommand*{\headerpositionstyle}[1]{{\large \scshape\headerfont\color{graytext} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\small \itshape\headerfont\color{lighttext} #1}}
-\newcommand*{\headersocialstyle}[1]{{\footnotesize \headerfont\color{my-aqua} #1}}
-\newcommand*{\headerquotestyle}[1]{{\small \bodyfont\itshape\color{darktext} #1}}
-\newcommand*{\footerstyle}[1]{{\footnotesize \footerfont\scshape\color{lighttext} #1}}
-\newcommand*{\sectionstyle}[1]{{\Large \bodyfont\bfseries\color{text}\@sectioncolor #1}}
-\newcommand*{\subsectionstyle}[1]{{\large \bodyfont\scshape\textcolor{text}{#1}}}
-\newcommand*{\paragraphstyle}{\normalsize \bodyfont\upshape\color{text}}
+\newcommand*{\headersocialstyle}[1]{{\footnotesize \headerfont\color{main} #1}}
+\newcommand*{\headerquotestyle}[1]{{\small \bodyfont\itshape\color{graytext} #1}}
+\newcommand*{\footerstyle}[1]{{\footnotesize \footerfont\scshape\color{graytext} #1}}
+% \newcommand*{\sectionstyle}[1]{{\Large \bodyfont\bfseries\@sectioncolor #1}}
+\newcommand*{\sectionstyle}[1]{{\Large \bodyfont\bfseries\textcolor{main}{#1}}}
+\newcommand*{\subsectionstyle}[1]{{\large \bodyfont\scshape\textcolor{graytext}{#1}}}
+\newcommand*{\paragraphstyle}{\normalsize \bodyfont\upshape\color{graytext}}
 
 % For elements of entry
-\newcommand*{\entrytitlestyle}[1]{{\normalsize \bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\entrytitlestyle}[1]{{\normalsize \bodyfont\bfseries\color{text} #1}}
 \newcommand*{\entrypositionstyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
 \newcommand*{\entrydatestyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
-\newcommand*{\entrylocationstyle}[1]{{\normalsize \bodyfont\color{main} #1}}
-\newcommand*{\descriptionstyle}[1]{{\normalsize \bodyfont\upshape\color{text} #1}}
+\newcommand*{\entrylocationstyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
+\newcommand*{\descriptionstyle}[1]{{\normalsize \bodyfont\upshape\color{graytext} #1}}
 
 % For elements of subentry
-\newcommand*{\subentrytitlestyle}[1]{{\small \bodyfont\mdseries\color{graytext} #1}}
+\newcommand*{\subentrytitlestyle}[1]{{\small \bodyfont\mdseries\color{text} #1}}
 \newcommand*{\subentrypositionstyle}[1]{{\small \bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\subentrydatestyle}[1]{{\small \bodyfont\color{graytext} #1}}
 \newcommand*{\subentrylocationstyle}[1]{{\small \bodyfont\slshape\color{main} #1}}
-\newcommand*{\subdescriptionstyle}[1]{{\small \bodyfont\upshape\color{text} #1}}
+\newcommand*{\subdescriptionstyle}[1]{{\small \bodyfont\upshape\color{graytext} #1}}
 
 % For elements of honor
-\newcommand*{\honortitlestyle}[1]{{\normalsize \bodyfont\color{darktext} #1}}
-\newcommand*{\honorpositionstyle}[1]{{\normalsize \bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\honortitlestyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
+\newcommand*{\honorpositionstyle}[1]{{\normalsize \bodyfont\bfseries\color{graytext} #1}}
 \newcommand*{\honordatestyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
 \newcommand*{\honorlocationstyle}[1]{{\normalsize \bodyfont\slshape\color{main} #1}}
 
 % For elements of skill
-\newcommand*{\skilltypestyle}[1]{{\normalsize \bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\skillsetstyle}[1]{{\normalsize \bodyfont\color{text} #1}}
+\newcommand*{\skilltypestyle}[1]{{\normalsize \bodyfont\bfseries\color{graytext} #1}}
+\newcommand*{\skillsetstyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
 
 % References
-\newcommand*{\refnamestyle}[1]{{\large \bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\refaddressstyle}[1]{{\normalsize \bodyfont\color{lighttext} #1}}
+\newcommand*{\refnamestyle}[1]{{\large \bodyfont\bfseries\color{graytext} #1}}
+\newcommand*{\refaddressstyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
 \newcommand*{\refcontactstyle}[1]{{\normalsize \bodyfont\color{my-aqua} #1}}
 
 % For elements of the cover letter
 \newcommand*{\lettersectionstyle}[1]{{\large \bodyfont\bfseries\color{text}\@sectioncolor #1}}
 \newcommand*{\recipientaddressstyle}[1]{{\normalsize \bodyfont\scshape\color{graytext} #1}}
-\newcommand*{\recipienttitlestyle}[1]{{\large \bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\lettertitlestyle}[1]{{\large \bodyfont\bfseries\color{darktext} \underline{#1}}}
+\newcommand*{\recipienttitlestyle}[1]{{\large \bodyfont\bfseries\color{graytext} #1}}
+\newcommand*{\lettertitlestyle}[1]{{\large \bodyfont\bfseries\color{graytext} \underline{#1}}}
 \newcommand*{\letterdatestyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
 \newcommand*{\lettertextstyle}{\normalszie \bodyfont\upshape\color{graytext}}
-\newcommand*{\letternamestyle}[1]{{\normalsize \bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\letterenclosurestyle}[1]{{\normalsize \bodyfont\slshape\color{lighttext} #1}}
+\newcommand*{\letternamestyle}[1]{{\normalsize \bodyfont\bfseries\color{graytext} #1}}
+\newcommand*{\letterenclosurestyle}[1]{{\normalsize \bodyfont\slshape\color{graytext} #1}}
 
 
 %-------------------------------------------------------------------------------
@@ -417,7 +425,7 @@
 \newcommand{\acvHeaderAfterPositionSkip}{.4mm}
 \newcommand{\acvHeaderAfterAddressSkip}{-.5mm}
 \newcommand{\acvHeaderIconSep}{\space}
-\newcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+\newcommand{\acvHeaderSocialSep}{\quad\quad}
 \newcommand{\acvHeaderAfterSocialSkip}{6mm}
 \newcommand{\acvHeaderAfterQuoteSkip}{5mm}
 
@@ -591,7 +599,7 @@
   \vspace{\acvSectionTopSkip}
   \sectionstyle{#1}
   \phantomsection
-  \color{gray}\vhrulefill{0.9pt}
+  % \color{gray}\vhrulefill{0.9pt}
 }
 
 % Define a subsection for CV
@@ -629,8 +637,8 @@
   \begin{tabular*}{\textwidth}[t]{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
     \ifempty{#2#3}
       {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
-       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrydatestyle{#4} \\
+       \entrypositionstyle{#1} & {} \\}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   \end{tabular*}%
 }
