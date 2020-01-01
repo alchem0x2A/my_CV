@@ -834,8 +834,8 @@
    \interlinepenalty5000}
 
 
- % --------------------------------------------------------------------------------
- % Customized bibliography formats
+% --------------------------------------------------------------------------------
+% Customized bibliography formats
 %-------------------------------------------------------------------------------- 
 % Customized format, based on Fancy CV template created by Adrien Friggeri
 \DeclareFieldFormat[article]{title}{#1\par}
@@ -845,7 +845,7 @@
 \DeclareFieldFormat[incollection]{title}{#1\par}
 \DeclareFieldFormat[unpublished]{title}{#1\par}
 \DefineBibliographyStrings{english}{%
-  url = {\underline{doi}},
+  url = {\underline{link}},
 }
 \DeclareFieldFormat{url}{%
   \ifhyperref
@@ -862,19 +862,17 @@
 
 \DeclareBibliographyDriver{article}{%
   {\small \bodyfont%
-  \printfield{title}}%
-  \newblock%
+  \printfield{title} \par}%
+  % \newblock%
   {\small \bodyfont
-  \printnames{author}%
-  \par}%
-  \newblock%
+  \hspace{-0.5em} \printnames{author} \par}%
+  % \newblock%
   {%
-    \setunit{\space}
+    % \setunit{\space}
     \small \bodyfont\color{graytext}%
-    
     \usebibmacro{journal+issuetitle}%
     % \printfield{journaltitle}
-    \setunit{\space}%
+    % \setunit{\space}%
     \printfield{pages}%
     \newunit%
     % \printlist{publisher}%
@@ -883,6 +881,7 @@
     \setunit{\space}%
     \small \bodyfont\color{my-aqua}
     \printfield{url}
+    \par
   }
   \par\vspace{0.3\baselineskip}
 }
@@ -890,13 +889,13 @@
 \DeclareBibliographyDriver{inproceedings}{%
   {\small \bodyfont%
   \printfield{title}}%
-  \newblock%
+  % \newblock%
   {\small \bodyfont
-  \printnames{author}%
+  \hspace{-0.5em} \printnames{author}%
   \par}%
-  \newblock%
+  % \newblock%
   {%
-    \setunit{\space}
+    % \setunit{\space}
     \small \bodyfont\color{graytext}%
     \setunit{\space}%
     \printfield{booktitle}%
@@ -907,9 +906,9 @@
 \DeclareBibliographyDriver{unpublished}{%
   {\small \bodyfont%
   \printfield{title}}%
-  \newblock%
+  % \newblock%
   {\small \bodyfont
-  \printnames{author}%
+  \hspace{-0.5em} \printnames{author}%
   \par}%
   {\small \bodyfont
   \printfield{journaltitle}
@@ -941,7 +940,7 @@
   }
   {
     \ifitemannotation{coauth-highlight}
-    {    \textbf{#1}}
+    {\textbf{#1}}
     {\ifitemannotation{highlight}
       {\textbf{#1}}
       {#1}
