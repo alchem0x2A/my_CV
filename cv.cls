@@ -59,9 +59,6 @@
 % Use Font Packages
 % --------------------------------------------------------------------------------
 \RequirePackage{fontawesome5} % Use fontawesome5 instead of version 4
-\RequirePackage[default,opentype]{sourcesanspro}
-\RequirePackage[default,osfigures,scale=0.95]{opensans}
-% \RequirePackage[RMstyle=Semibold, SSstyle=Semibold,]{plex-otf}
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
 % Needed to deal a paragraphs
@@ -89,7 +86,7 @@
 %-------------------------------------------------------------------------------
 %% Page Layout
 % Configure page margins with geometry
-\geometry{left=2.0cm, top=1.5cm, right=2.0cm, bottom=2.0cm, footskip=.5cm}
+\geometry{left=1in, top=0.75in, right=1in, bottom=0.75in, footskip=0.25in}
 
 %% Header & Footer
 % Set offset to each header and footer
@@ -152,36 +149,16 @@
 %-------------------------------------------------------------------------------
 %                Configuration for fonts
 %-------------------------------------------------------------------------------
-% Set the FontAwesome font to be up-to-date.
-% \newfontfamily\FA[Path=\@fontdir]{FontAwesome5}
-% Set font for header (default is Roboto)
-% \newfontfamily\headerfont[
-%   % Path=\@fontdir,
-%   UprightFont=*-Regular,
-%   ItalicFont=*-Italic,
-%   BoldFont=*-Medium,
-%   BoldItalicFont=*-MediumItalic,
-% ]{Roboto}
-
-% \newfontfamily\headerfontlight[
-%   % Path=\@fontdir,
-%   UprightFont=*-Thin,
-%   ItalicFont=*-ThinItalic,
-%   BoldFont=*-Medium,
-%   BoldItalicFont=*-MediumItalic,
-%   ]{Roboto}
 
 \newfontfamily\headerfont[
-% Path=\@fontdir,
   Extension=.otf,
-  UprightFont=*-Book,
-  ItalicFont=*-BookItalic,
+  UprightFont=*-Light,
+  ItalicFont=*-LightItalic,
   BoldFont=*-Medium,
   BoldItalicFont=*-MediumItalic,
 ]{FiraSans}
 
 \newfontfamily\headerfontlight[
-  % Path=\@fontdir,
   UprightFont=*-ExtraLight,
   ItalicFont=*-ExtraLightItalic,
   BoldFont=*-Medium,
@@ -189,7 +166,6 @@
 ]{FiraSans}
 
 \newfontfamily\bodyfont[
-% Path=\@fontdir,
   Extension=.otf,
   UprightFont=*-Light,
   ItalicFont=*-LightItalic,
@@ -216,11 +192,11 @@
 %-------------------------------------------------------------------------------
 % Configure styles for each CV elements
 % For fundamental structures
-\newcommand*{\headerfirstnamestyle}[1]{{\Huge \bfseries\headerfont\color{text} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\Huge \bfseries\headerfont\color{text} #1}}
+\newcommand*{\headerfirstnamestyle}[1]{{\Huge \bfseries \scshape \headerfont\color{text} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\Huge \bfseries \scshape\headerfont\color{text} #1}}
 % \newcommand*{\headerpositionstyle}[1]{{\fontsize{10pt}{1em}\scshape\bodyfontsans\color{main} #1}}
-\newcommand*{\headerpositionstyle}[1]{{\large \scshape\headerfont\color{graytext} #1}}
-\newcommand*{\headeraddressstyle}[1]{{\small \itshape\headerfont\color{lighttext} #1}}
+\newcommand*{\headerpositionstyle}[1]{{\large \headerfont\color{graytext} #1}}
+\newcommand*{\headeraddressstyle}[1]{{\large \headerfont\color{lighttext} #1}}
 \newcommand*{\headersocialstyle}[1]{{\footnotesize \headerfont\color{main} #1}}
 \newcommand*{\headerquotestyle}[1]{{\small \bodyfont\itshape\color{graytext} #1}}
 \newcommand*{\footerstyle}[1]{{\footnotesize \footerfont\scshape\color{graytext} #1}}
@@ -854,7 +830,7 @@
 
 
   \DeclareFieldFormat{labelnumberwidth}{
-    \fontsize{9pt}{1em}\bodyfont\color{graytext}
+    \normalsize\bodyfont\color{graytext}
     #1\adddot}
 
 % \DeclareFieldInputHandler{journaltitle}{%
@@ -864,7 +840,7 @@
   {\small \bodyfont%
   \printfield{title} \par}%
   % \newblock%
-  {\small \bodyfont
+  {\small \bodyfont \color{graytext}
   \hspace{-0.5em} \printnames{author} \par}%
   % \newblock%
   {%
@@ -890,7 +866,7 @@
   {\small \bodyfont%
   \printfield{title}}%
   % \newblock%
-  {\small \bodyfont
+  {\small \bodyfont \color{graytext}
   \hspace{-0.5em} \printnames{author}%
   \par}%
   % \newblock%
@@ -907,7 +883,7 @@
   {\small \bodyfont%
   \printfield{title}}%
   % \newblock%
-  {\small \bodyfont
+  {\small \bodyfont \color{graytext}
   \hspace{-0.5em} \printnames{author}%
   \par}%
   {\small \bodyfont
