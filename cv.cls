@@ -192,12 +192,12 @@
 %-------------------------------------------------------------------------------
 % Configure styles for each CV elements
 % For fundamental structures
-\newcommand*{\headerfirstnamestyle}[1]{{\Huge \bfseries \scshape \headerfont\color{text} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\Huge \bfseries \scshape\headerfont\color{text} #1}}
+\newcommand*{\headerfirstnamestyle}[1]{{\huge \bfseries \scshape \headerfont\color{text} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\huge \bfseries \scshape\headerfont\color{text} #1}}
 % \newcommand*{\headerpositionstyle}[1]{{\fontsize{10pt}{1em}\scshape\bodyfontsans\color{main} #1}}
 \newcommand*{\headerpositionstyle}[1]{{\large \headerfont\color{graytext} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\large \headerfont\color{lighttext} #1}}
-\newcommand*{\headersocialstyle}[1]{{\footnotesize \headerfont\color{main} #1}}
+\newcommand*{\headersocialstyle}[1]{{\scriptsize \headerfont\color{main} #1}}
 \newcommand*{\headerquotestyle}[1]{{\small \bodyfont\itshape\color{graytext} #1}}
 \newcommand*{\footerstyle}[1]{{\footnotesize \footerfont\scshape\color{graytext} #1}}
 % \newcommand*{\sectionstyle}[1]{{\Large \bodyfont\bfseries\@sectioncolor #1}}
@@ -235,13 +235,21 @@
 \newcommand*{\refcontactstyle}[1]{{\normalsize \bodyfont\color{my-aqua} #1}}
 
 % For elements of the cover letter
+
+\newcommand*{\letterfirstnamestyle}[1]{{\Large \bfseries \headerfont\color{text} #1}}
+\newcommand*{\letterlastnamestyle}[1]{{\Large \bfseries \headerfont\color{text} #1}}
+% \newcommand*{\headerpositionstyle}[1]{{\fontsize{10pt}{1em}\scshape\bodyfontsans\color{main} #1}}
+\newcommand*{\letterpositionstyle}[1]{{\normalsize \headerfont\color{graytext} #1}}
+\newcommand*{\letteraddressstyle}[1]{{\normalsize \headerfont\color{graytext} #1}}
+\newcommand*{\lettersocialstyle}[1]{{\normalsize \headerfont\color{main} #1}}
+\newcommand*{\letterquotestyle}[1]{{\small \bodyfont\itshape\color{graytext} #1}}
 \newcommand*{\lettersectionstyle}[1]{{\large \bodyfont\bfseries\color{text}\@sectioncolor #1}}
-\newcommand*{\recipientaddressstyle}[1]{{\normalsize \bodyfont\scshape\color{graytext} #1}}
-\newcommand*{\recipienttitlestyle}[1]{{\large \bodyfont\bfseries\color{graytext} #1}}
-\newcommand*{\lettertitlestyle}[1]{{\large \bodyfont\bfseries\color{graytext} \underline{#1}}}
+\newcommand*{\recipientaddressstyle}[1]{{\normalsize \bodyfont \color{graytext} #1}}
+\newcommand*{\recipienttitlestyle}[1]{{\large \bodyfont \color{graytext} #1}}
+\newcommand*{\lettertitlestyle}[1]{{\large \bodyfont\bfseries\color{graytext} #1}}
 \newcommand*{\letterdatestyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
-\newcommand*{\lettertextstyle}{\normalszie \bodyfont\upshape\color{graytext}}
-\newcommand*{\letternamestyle}[1]{{\normalsize \bodyfont\bfseries\color{graytext} #1}}
+\newcommand*{\lettertextstyle}{\normalsize \bodyfont\upshape\color{graytext}}
+\newcommand*{\letternamestyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
 \newcommand*{\letterenclosurestyle}[1]{{\normalsize \bodyfont\slshape\color{graytext} #1}}
 
 
@@ -743,8 +751,24 @@
   \par\addvspace{2.5ex}
   \phantomsection{}
   \lettersectionstyle{#1}
-  \color{gray}\vhrulefill{0.9pt}
+  % \color{gray}\vhrulefill{0.9pt}
   \par\nobreak\addvspace{0.4ex}
+}
+
+\newcommand*{\makeletterheader}[1][C]{%
+  % \newlength{\headertextwidth}{\textwidth}
+  % \newlength{\headerphotowidth}
+   \begin{minipage}[c]{\textwidth} \ifthenelse{\equal{#1}{L}}{\raggedright}{\ifthenelse{\equal{#1}{R}}{\raggedleft}{\centering}}
+    \letterfirstnamestyle{\@firstname}\letterlastnamestyle{{}\acvHeaderNameDelim\@lastname}%
+    \\[\acvHeaderAfterNameSkip]%
+    \ifthenelse{\isundefined{\@position}}{}{\letterpositionstyle{\@position\\[\acvHeaderAfterPositionSkip]}}%
+    \ifthenelse{\isundefined{\@address}}{}{\letteraddressstyle{\@address\\[\acvHeaderAfterAddressSkip]}}%
+
+    \ifthenelse{\isundefined{\@email}}{}{\lettersocialstyle{\faEnvelope\acvHeaderIconSep\@email\\[\acvHeaderAfterAddressSkip]}}%
+
+    \ifthenelse{\isundefined{\@mobile}}{}{\lettersocialstyle{\faPhoneSquare\acvHeaderIconSep\@mobile\\[\acvHeaderAfterAddressSkip]}}%
+    \end{minipage}
+    
 }
 
 % Define a title of the cover letter
@@ -757,18 +781,19 @@
     \recipienttitlestyle{\@recipientname} & \letterdatestyle{\@letterdate}
   \end{tabular*}
   \begin{singlespace}
-    \recipientaddressstyle{\@recipientaddress} \\\\
+    \recipientaddressstyle{\@recipientaddress} 
   \end{singlespace}
   \ifthenelse{\isundefined{\@lettertitle}}
     {}
-    {\lettertitlestyle{\@lettertitle} \\}
+    {\lettertitlestyle{\@lettertitle}\\\\}
+  % \vspace{2em}
   \lettertextstyle{\@letteropening}
 }
 
 % Define a closing of the cover letter
 % Usage: \makeletterclosing
 \newcommand*{\makeletterclosing}{%
-  \vspace{3.4mm}
+  \vspace{1em}
   \lettertextstyle{\@letterclosing} \\\\
   \letternamestyle{\@firstname\ \@lastname}
   \ifthenelse{\isundefined{\@letterenclosure}}
