@@ -7,9 +7,9 @@ DIFF_TAG= --exclude-textcmd="section,subsection,figure,equation,subequation" --c
 PDFLATEX_TAG= -interaction=nonstopmode -draftmode
 
 
-all: cv letter
+all: main letter
 
-cv:	
+main:	
 	latexmk $(LATEXMK_TAG) $(TEX_CV)
 
 letter:	
