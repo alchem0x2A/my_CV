@@ -16,7 +16,7 @@ letter:
 	latexmk $(LATEXMK_TAG) $(TEX_LETT)
 
 clean:
-	latexmk -c
+	latexmk -C
 
 
 clean-all:

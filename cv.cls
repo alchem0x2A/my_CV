@@ -86,7 +86,7 @@
 %-------------------------------------------------------------------------------
 %% Page Layout
 % Configure page margins with geometry
-\geometry{left=1in, top=0.75in, right=1in, bottom=0.75in, footskip=0.25in}
+\geometry{left=0.75in, top=0.5in, right=0.75in, bottom=0.5in, footskip=0.25in}
 
 %% Header & Footer
 % Set offset to each header and footer
@@ -245,8 +245,8 @@
 \newcommand*{\letterquotestyle}[1]{{\small \bodyfont\itshape\color{graytext} #1}}
 \newcommand*{\lettersectionstyle}[1]{{\large \bodyfont\bfseries\color{text}\@sectioncolor #1}}
 \newcommand*{\recipientaddressstyle}[1]{{\normalsize \bodyfont \color{graytext} #1}}
-\newcommand*{\recipienttitlestyle}[1]{{\large \bodyfont \color{graytext} #1}}
-\newcommand*{\lettertitlestyle}[1]{{\large \bodyfont\bfseries\color{graytext} #1}}
+\newcommand*{\recipienttitlestyle}[1]{{\normalsize \bodyfont \color{graytext} #1}}
+\newcommand*{\lettertitlestyle}[1]{{\normalsize \bodyfont\bfseries\color{graytext} #1}}
 \newcommand*{\letterdatestyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
 \newcommand*{\lettertextstyle}{\normalsize \bodyfont\upshape\color{graytext}}
 \newcommand*{\letternamestyle}[1]{{\normalsize \bodyfont\color{graytext} #1}}
@@ -781,11 +781,11 @@
     \recipienttitlestyle{\@recipientname} & \letterdatestyle{\@letterdate}
   \end{tabular*}
   \begin{singlespace}
-    \recipientaddressstyle{\@recipientaddress} 
+    \vspace{-0.5em} \recipientaddressstyle{\@recipientaddress} 
   \end{singlespace}
   \ifthenelse{\isundefined{\@lettertitle}}
     {}
-    {\lettertitlestyle{\@lettertitle}\\\\}
+    {\vspace{1em}\lettertitlestyle{\@lettertitle}\\\\}
   % \vspace{2em}
   \lettertextstyle{\@letteropening}
 }
@@ -799,7 +799,7 @@
   \ifthenelse{\isundefined{\@letterenclosure}}
     {\\}
     {%
-      \\\\\\
+      \vspace{1em}
       \letterenclosurestyle{\@letterenclname: \@letterenclosure} \\
     }
 }
