@@ -916,20 +916,47 @@
   \par\vspace{0.3\baselineskip}}
 }
 
-
+% Renew given name style
+% If coauth, use superscript
 \renewcommand*{\mkbibnamegiven}[1]{%
   \ifitemannotation{coauth}
   {
-    #1\textsuperscript{\textdagger}
-  }
-  {
+    {#1\textsuperscript{\textdagger}}
+  }{
     \ifitemannotation{coauth-highlight}
-    {    \textbf{#1\textsuperscript{\textdagger}}}
-    {\ifitemannotation{highlight}
-      {\textbf{#1}}
-      {#1}
+    {
+     \textbf{#1\textsuperscript{\textdagger}}
+    }{
+      \ifitemannotation{highlight}
+    {
+      \textbf{#1}
     }
-  }}
+    {
+      \ifitemannotation{corr-highlight}
+      {
+        \textbf{#1}\textsuperscript{*}
+      }
+      {
+        {#1}
+      }
+    }
+    }
+  }
+}
+  %     
+  %   }
+
+  %   {    
+  % {
+  %   \ifitemannotation{coauth-highlight}
+  %   {    \textbf{#1\textsuperscript{\textdagger}}}
+  %   {\ifitemannotation{highlight}
+  %     {\textbf{#1}}
+  %   }
+  %   {\ifitemannotation{corr-highlight}
+  %     {\textbf{#1}\textsuperscript{*}}
+  %   }
+  % }}
   % \ifitemannotation{highlight}
     % {\textbf{#1}}
     % {#1}}
@@ -938,15 +965,21 @@
   \ifitemannotation{coauth}
   {
     #1
-  }
+  }{
+  \ifitemannotation{corr-highlight}
   {
+    \textbf{#1}
+  }{
     \ifitemannotation{coauth-highlight}
     {\textbf{#1}}
-    {\ifitemannotation{highlight}
+    {
+      \ifitemannotation{highlight}
       {\textbf{#1}}
       {#1}
     }
-  }}
+    }
+  }
+}
 
 
 % --------------------------------------------------------------------------------
