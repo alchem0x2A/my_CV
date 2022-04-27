@@ -811,15 +811,17 @@
 \RequirePackage[ % BibLaTeX
 	sorting=none, % Sorts entries by year (descending order), name, title
 	style=chem-acs,
-	doi=true,
+  articletitle=true,
+	doi=false,
 	isbn=false,
-	url=true,
+	url=false,
 	eprint=false,
 	backref = false, % include back references in bibliography
 	maxcitenames=3, % affects only the citations in the document body
 	maxbibnames=99, % affects only the bibliography, pass 99 to print all
 	hyperref=true,
-	block=none,
+	% block=ragged,
+  block=none,
 	backend=biber % {Options: bibtex, biber}
 	]{biblatex}
 
@@ -851,38 +853,36 @@
 \DeclareFieldFormat{url}{%
   \ifhyperref
     {\href{#1}{\bibstring{url}}}
-    {\url{#1}}}
+    {\url{#1}}
+}
 
 
-  \DeclareFieldFormat{labelnumberwidth}{
-    \normalsize\bodyfont\color{graytext}
-    #1\adddot}
+\DeclareFieldFormat{labelnumberwidth}{
+  \normalsize\bodyfont\color{graytext}
+  #1\adddot}
 
 % \DeclareFieldInputHandler{journaltitle}{%
-  % \def\NewValue{\JournalTitle{#1}}}
+%   \def\NewValue{\JournalTitle{#1}}}
 
 \DeclareBibliographyDriver{article}{%
-  {\small \bodyfont%
-  \printfield{title} \par}%
-  % \newblock%
+  {\small \bodyfont \printfield{title}}
+  %  \par}%
+  \newblock%
   {\small \bodyfont \color{graytext}
-  \hspace{-0.5em} \printnames{author} \par}%
-  % \newblock%
-  {%
-    % \setunit{\space}
-    \small \bodyfont\color{graytext}%
-    \usebibmacro{journal+issuetitle}%
-    % \printfield{journaltitle}
-    % \setunit{\space}%
-    \printfield{pages}%
-    \newunit%
-    % \printlist{publisher}%
-    % \printfield{year}%
-    % \newunit%
-    \setunit{\space}%
-    \small \bodyfont\color{my-aqua}
-    \printfield{url}
-    \par
+  \hspace{-0.5em} 
+  \printnames{author} 
+  \par}
+  \newblock
+  % \printfield{title}
+  {
+  \small \bodyfont \color{graytext}
+  \usebibmacro{journal+issuetitle}%
+  \printfield{pages}%
+  \newunit%
+  \setunit{\space}%
+  \small \bodyfont\color{my-aqua}
+  \printfield{url}
+  \par
   }
   \par\vspace{0.3\baselineskip}
 }
@@ -890,13 +890,12 @@
 \DeclareBibliographyDriver{inproceedings}{%
   {\small \bodyfont%
   \printfield{title}}%
-  % \newblock%
+  \newblock%
   {\small \bodyfont \color{graytext}
   \hspace{-0.5em} \printnames{author}%
   \par}%
-  % \newblock%
+  \newblock%
   {%
-    % \setunit{\space}
     \small \bodyfont\color{graytext}%
     \setunit{\space}%
     \printfield{booktitle}%
@@ -904,82 +903,42 @@
   \par\vspace{0.3\baselineskip}
 }
 
-\DeclareBibliographyDriver{unpublished}{%
-  {\small \bodyfont%
-  \printfield{title}}%
-  % \newblock%
-  {\small \bodyfont \color{graytext}
-  \hspace{-0.5em} \printnames{author}%
-  \par}%
-  {\small \bodyfont
-  \printfield{journaltitle}
-  \par\vspace{0.3\baselineskip}}
+% \DeclareBibliographyDriver{unpublished}{%
+%   {\small \bodyfont%
+%   \printfield{title}}%
+%   % \newblock%
+%   {\small \bodyfont \color{graytext}
+%   \hspace{-0.5em} \printnames{author}%
+%   \par}%
+%   {\small \bodyfont
+%   \printfield{journaltitle}
+%   \par\vspace{0.3\baselineskip}}
+% }
+
+
+
+
+\renewcommand*{\mkbibcompletename}[1]{
+\ifitemannotation{highlight}
+{
+{\textbf{#1}}
+}
+{
+\ifitemannotation{corr-highlight}
+{\textbf{#1}\textsuperscript{*}}
+{%
+\ifitemannotation{coauth-highlight}
+{\textbf{#1}\textsuperscript{\textdagger}}
+{%
+\ifitemannotation{coauth}
+{#1\textsuperscript{\textdagger}}%
+{#1}%
+}
+}   
+}
 }
 
-% Renew given name style
-% If coauth, use superscript
-\renewcommand*{\mkbibnamegiven}[1]{%
-  \ifitemannotation{coauth}
-  {
-    {#1\textsuperscript{\textdagger}}
-  }{
-    \ifitemannotation{coauth-highlight}
-    {
-     \textbf{#1\textsuperscript{\textdagger}}
-    }{
-      \ifitemannotation{highlight}
-    {
-      \textbf{#1}
-    }
-    {
-      \ifitemannotation{corr-highlight}
-      {
-        \textbf{#1}\textsuperscript{*}
-      }
-      {
-        {#1}
-      }
-    }
-    }
-  }
-}
-  %     
-  %   }
 
-  %   {    
-  % {
-  %   \ifitemannotation{coauth-highlight}
-  %   {    \textbf{#1\textsuperscript{\textdagger}}}
-  %   {\ifitemannotation{highlight}
-  %     {\textbf{#1}}
-  %   }
-  %   {\ifitemannotation{corr-highlight}
-  %     {\textbf{#1}\textsuperscript{*}}
-  %   }
-  % }}
-  % \ifitemannotation{highlight}
-    % {\textbf{#1}}
-    % {#1}}
-
-\renewcommand*{\mkbibnamefamily}[1]{%
-  \ifitemannotation{coauth}
-  {
-    #1
-  }{
-  \ifitemannotation{corr-highlight}
-  {
-    \textbf{#1}
-  }{
-    \ifitemannotation{coauth-highlight}
-    {\textbf{#1}}
-    {
-      \ifitemannotation{highlight}
-      {\textbf{#1}}
-      {#1}
-    }
-    }
-  }
-}
 
 
 % --------------------------------------------------------------------------------
