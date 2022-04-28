@@ -869,7 +869,7 @@
   %  \par}%
   \newblock%
   {\small \bodyfont \color{graytext}
-  \hspace{-0.5em} 
+  \hspace{-0.4em} 
   \printnames{author} 
   \par}
   \newblock
@@ -892,13 +892,20 @@
   \printfield{title}}%
   \newblock%
   {\small \bodyfont \color{graytext}
-  \hspace{-0.5em} \printnames{author}%
+  \hspace{-0.4em} \printnames{author}%
   \par}%
   \newblock%
   {%
     \small \bodyfont\color{graytext}%
     \setunit{\space}%
     \printfield{booktitle}%
+    \setunit{\space}%
+    \textbf{\printfield{year}}%
+    \newunit%
+    \setunit{\space}%
+    \small \bodyfont\color{my-aqua}
+    \printfield{url}
+    \par
   }
   \par\vspace{0.3\baselineskip}
 }
@@ -920,12 +927,12 @@
 
 \renewcommand*{\mkbibcompletename}[1]{
 \ifitemannotation{highlight}
-{
-{\textbf{#1}}
-}
-{
-\ifitemannotation{corr-highlight}
-{\textbf{#1}\textsuperscript{*}}
+{%
+{\textbf{#1}}%
+}%
+{%
+\ifitemannotation{corr-highlight}%
+{\textbf{#1}\textsuperscript{*}}%
 {%
 \ifitemannotation{coauth-highlight}
 {\textbf{#1}\textsuperscript{\textdagger}}
@@ -933,8 +940,8 @@
 \ifitemannotation{coauth}
 {#1\textsuperscript{\textdagger}}%
 {#1}%
-}
-}   
+}%
+}  
 }
 }
 
